@@ -1,5 +1,5 @@
 var subject = ["Harry", "Hermine", "Ron", "Hagrid", "Snape", "Dumbledore"];
-var prediacte = ["braut", "liebt", "studiert", "hasst", "zaubert", " zerstört"];
+var prediacte = ["braut", "liebt", "studiert", "hasst", "zaubert", "zerstört"];
 var object = ["Zaubertränke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];
 //console.log(subject, prediacte, object);
 for (var index = 6; index >= 1; index--) {
