@@ -1,5 +1,5 @@
 const subject: string[] = ["Harry", "Hermine", "Ron", "Hagrid", "Snape", "Dumbledore"];
-const prediacte: string[] = ["braut", "liebt", "studiert", "hasst", "zaubert", " zerstört"];
+const prediacte: string[] = ["braut", "liebt", "studiert", "hasst", "zaubert", "zerstört"];
 const object: string[] = ["Zaubertränke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];
 
 //console.log(subject, prediacte, object);
