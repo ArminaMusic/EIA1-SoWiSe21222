@@ -2,7 +2,7 @@ var subject = ["Harry", "Hermine", "Ron", "Hagrid", "Snape", "Dumbledore"];
 var prediacte = ["braut", "liebt", "studiert", "hasst", "zaubert", " zerstört"];
 var object = ["Zaubertränke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];
 //console.log(subject, prediacte, object);
-for (var i = 6; i >= 1; i--) {
+for (var index = 6; index >= 1; index--) {
     //console.log(i);
     console.log(getVerse(subject, prediacte, object));
 }

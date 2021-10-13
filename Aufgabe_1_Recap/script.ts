@@ -4,7 +4,7 @@ const object: string[] = ["Zaubertränke", "den Grimm", "Lupin", "Hogwarts", "di
 
 //console.log(subject, prediacte, object);
 
-for (let i = 6; i >= 1; i--) {
+for (let index: number = 6; index >= 1; index--) {
 //console.log(i);
 console.log(getVerse(subject, prediacte, object));
 
