@@ -21,7 +21,6 @@ var L03_Sequenzmemory;
         startButton = document.querySelector("#startButton");
         divMenu.addEventListener("submit", handleChange);
         cardField = document.querySelector("#gameField");
-        startButton.addEventListener("click", startGame);
     }
     function handleChange(_event) {
         _event.preventDefault();
@@ -32,6 +31,7 @@ var L03_Sequenzmemory;
             cardValue.push(String(thisGame[1]));
         }
         console.log(cardValue);
+        startGame();
     }
     /*-----Start the Game, genertiere das Spielfeld-----*/
     function startGame() {
@@ -49,7 +49,6 @@ var L03_Sequenzmemory;
         cardField.innerHTML = "";
         document.body.style.background = cardValue[2];
         document.body.style.fontFamily = cardValue[5];
-        console.log(cardArray);
         for (let index = 0; index < cardArray.length; index++) {
             let card = document.createElement(thisElement());
             card.style.width = cardValue[1] + "px";
@@ -107,6 +106,7 @@ var L03_Sequenzmemory;
     function winCheck() {
         if (pairFound == pairAmount) {
             window.alert("Du hast Gewonnen - Reload zum neustarten!");
+            location.reload();
         }
     }
 })(L03_Sequenzmemory || (L03_Sequenzmemory = {}));

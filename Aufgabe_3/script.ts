@@ -4,7 +4,6 @@ Name: Armina Music
 Matrikel: 268021
 Datum: 13.11.2021
 */
-
 namespace L03_Sequenzmemory {
     let pairAmount: number;
     let cardSymbol: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
@@ -22,8 +21,7 @@ namespace L03_Sequenzmemory {
         divMenu = <HTMLFormElement>document.querySelector("#menu");
         startButton = <HTMLElement>document.querySelector("#startButton");
         divMenu.addEventListener("submit", handleChange);
-        cardField = <HTMLDivElement>document.querySelector("#gameField");
-        startButton.addEventListener("click", startGame);       
+        cardField = <HTMLDivElement>document.querySelector("#gameField");  
     }
 
     function handleChange(_event: Event): void {
@@ -35,7 +33,8 @@ namespace L03_Sequenzmemory {
             cardValue.push(String(thisGame[1]));
         }         
         console.log(cardValue);
-           
+        
+        startGame();
     }
     /*-----Start the Game, genertiere das Spielfeld-----*/
     function startGame(): void {        
@@ -53,10 +52,7 @@ namespace L03_Sequenzmemory {
         cardArray.sort(() => 0.5 - Math.random());
         cardField.innerHTML = "";
         document.body.style.background = cardValue[2];
-        document.body.style.fontFamily = cardValue[5];
-        
-        console.log(cardArray);
-        
+        document.body.style.fontFamily = cardValue[5];        
 
         for (let index: number = 0; index < cardArray.length; index++) {
             
@@ -114,6 +110,7 @@ namespace L03_Sequenzmemory {
     function winCheck(): void {
         if (pairFound == pairAmount) {
             window.alert("Du hast Gewonnen - Reload zum neustarten!");
+            location.reload();
         }
     }
 }
