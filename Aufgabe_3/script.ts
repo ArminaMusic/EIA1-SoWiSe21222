@@ -17,6 +17,7 @@ namespace L03_Sequenzmemory {
 
     window.addEventListener("load", handleLoad);
 
+    /*---------FUNKTIONEN--------*/
     function handleLoad(): void {
         divMenu = <HTMLFormElement>document.querySelector("#menu");
         startButton = <HTMLElement>document.querySelector("#startButton");
@@ -26,14 +27,13 @@ namespace L03_Sequenzmemory {
 
     function handleChange(_event: Event): void {
         _event.preventDefault();
-        // Fill FormData
+        /*--------Fill FormData--------*/
         let formData: FormData = new FormData(document.forms[0]);        
         cardValue = [];
         for (let thisGame of formData) {
             cardValue.push(String(thisGame[1]));
         }         
-        console.log(cardValue);
-        
+        /*-----Spiel wird gestartet-----*/        
         startGame();
     }
     /*-----Start the Game, genertiere das Spielfeld-----*/
@@ -44,8 +44,6 @@ namespace L03_Sequenzmemory {
         for (let i: number = 0; i < 2; i++) {            
             for (let x: number = 0; x < pairAmount; x++) {
                 cardArray.push(cardSymbol[x]);
-                console.log(cardArray);
-                
             }
         }
         /*-----Karten werden zufällig angeordnet-----*/
@@ -53,9 +51,7 @@ namespace L03_Sequenzmemory {
         cardField.innerHTML = "";
         document.body.style.background = cardValue[2];
         document.body.style.fontFamily = cardValue[5];        
-
         for (let index: number = 0; index < cardArray.length; index++) {
-            
             let card: HTMLElement = <HTMLElement>document.createElement(thisElement());
             card.style.width = cardValue[1] + "px";
             card.style.height = cardValue[1] + "px";
@@ -84,7 +80,7 @@ namespace L03_Sequenzmemory {
         if (cardContainer.length == 2) {
             cardContainer[1].style.background = "white";
             cardContainer[1].querySelector("span").classList.remove("visible");
-            setTimeout(compareCards, 1000);
+            setTimeout(compareCards, 500);
         }
     }
     /*---------Kartenpaare werden verglichen, winCheck wird ausgeführt---------*/
@@ -101,15 +97,15 @@ namespace L03_Sequenzmemory {
         } else {
             cardContainer[0].style.background = cardValue[4];
             cardContainer[1].style.background = cardValue[4];
-            cardContainer[0].querySelector("span")?.classList.add("visible");
-            cardContainer[1].querySelector("span")?.classList.add("visible");
+            cardContainer[0].querySelector("span").classList.add("visible");
+            cardContainer[1].querySelector("span").classList.add("visible");
             cardContainer = [];
         }
     }
     /*---------Prüfen ob die paitFound dem pairAmount entsprechen, um das spiel bei erfüllter Bedingung zu beenden---------*/
     function winCheck(): void {
         if (pairFound == pairAmount) {
-            window.alert("Du hast Gewonnen - Reload zum neustarten!");
+            window.alert("Du hast Gewonnen!");
             location.reload();
         }
     }

@@ -41,8 +41,7 @@ fieldset {
 
  #gameField > div {
     position: relative;
-    border-radius: 50px;
-    border: rgb(0, 0, 0) solid 3px;
+    margin: auto;
 }
 
  #timer {

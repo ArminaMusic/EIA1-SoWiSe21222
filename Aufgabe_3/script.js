@@ -16,6 +16,7 @@ var L03_Sequenzmemory;
     let divMenu;
     let cardValue = [];
     window.addEventListener("load", handleLoad);
+    /*---------FUNKTIONEN--------*/
     function handleLoad() {
         divMenu = document.querySelector("#menu");
         startButton = document.querySelector("#startButton");
@@ -24,13 +25,13 @@ var L03_Sequenzmemory;
     }
     function handleChange(_event) {
         _event.preventDefault();
-        // Fill FormData
+        /*--------Fill FormData--------*/
         let formData = new FormData(document.forms[0]);
         cardValue = [];
         for (let thisGame of formData) {
             cardValue.push(String(thisGame[1]));
         }
-        console.log(cardValue);
+        /*-----Spiel wird gestartet-----*/
         startGame();
     }
     /*-----Start the Game, genertiere das Spielfeld-----*/
@@ -41,7 +42,6 @@ var L03_Sequenzmemory;
         for (let i = 0; i < 2; i++) {
             for (let x = 0; x < pairAmount; x++) {
                 cardArray.push(cardSymbol[x]);
-                console.log(cardArray);
             }
         }
         /*-----Karten werden zufällig angeordnet-----*/
@@ -78,12 +78,11 @@ var L03_Sequenzmemory;
         if (cardContainer.length == 2) {
             cardContainer[1].style.background = "white";
             cardContainer[1].querySelector("span").classList.remove("visible");
-            setTimeout(compareCards, 1000);
+            setTimeout(compareCards, 500);
         }
     }
     /*---------Kartenpaare werden verglichen, winCheck wird ausgeführt---------*/
     function compareCards() {
-        var _a, _b;
         let spanValue0 = cardContainer[0].querySelector("span").innerHTML;
         let spanValue1 = cardContainer[1].querySelector("span").innerHTML;
         if (spanValue0 == spanValue1) {
@@ -97,15 +96,15 @@ var L03_Sequenzmemory;
         else {
             cardContainer[0].style.background = cardValue[4];
             cardContainer[1].style.background = cardValue[4];
-            (_a = cardContainer[0].querySelector("span")) === null || _a === void 0 ? void 0 : _a.classList.add("visible");
-            (_b = cardContainer[1].querySelector("span")) === null || _b === void 0 ? void 0 : _b.classList.add("visible");
+            cardContainer[0].querySelector("span").classList.add("visible");
+            cardContainer[1].querySelector("span").classList.add("visible");
             cardContainer = [];
         }
     }
     /*---------Prüfen ob die paitFound dem pairAmount entsprechen, um das spiel bei erfüllter Bedingung zu beenden---------*/
     function winCheck() {
         if (pairFound == pairAmount) {
-            window.alert("Du hast Gewonnen - Reload zum neustarten!");
+            window.alert("Du hast Gewonnen!");
             location.reload();
         }
     }
