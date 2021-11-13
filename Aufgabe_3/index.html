@@ -6,16 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L03 Memory</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" type="text/javascript" charset="utf-8" defer></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="script.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
     <!-- Menü -->
 <h1>L03_Sequenzmemory</h1>   
     <form  id="menu">
-        
             <fieldset id="cardAmount">
                 <label for="pairs">Anzahl der Paare von 5-25: </label>
                 <input type="number" name="pairs" id="pairs" min="5" max="25" step="1" value="5">
@@ -41,7 +38,6 @@
                 <input id="cardsColor" name="cardsColor" type="color" value="#ff0000"><br>
             </fieldset>
             <br>
-
             <fieldset>
             <p>Schriftart: </p>
                 <select id="textFont" name="textFont">
@@ -50,15 +46,12 @@
                     <option>sans-serif</option>
                     <option>Arial</option>
                 </select>
-            </fieldset><br>
-
-              <!--Starte das Spiel - Startbutton -->
+            </fieldset>
+            <br>
+    <!--Starte das Spiel - Startbutton -->
     <button id="startButton" name="startButton" type="submit">Start Game!</button>
     </form>
-    
     <!--Spielfeld-->
     <div id="gameField"></div>
-
 </body>
-
 </html>

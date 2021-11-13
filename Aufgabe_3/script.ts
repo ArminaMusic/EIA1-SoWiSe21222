@@ -3,6 +3,7 @@ Aufgabe: L03_Sequenzmemory
 Name: Armina Music
 Matrikel: 268021
 Datum: 13.11.2021
+Kommentar: es6 Version
 */
 namespace L03_Sequenzmemory {
     let pairAmount: number;
