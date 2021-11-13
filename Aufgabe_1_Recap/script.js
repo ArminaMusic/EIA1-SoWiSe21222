@@ -1,3 +1,9 @@
+/*
+Aufgabe: L00_Preparation
+Name: Armina Music
+Matrikel: 268021
+Datum: 11.11.2021
+*/
 var subject = ["Harry", "Hermine", "Ron", "Hagrid", "Snape", "Dumbledore"];
 var prediacte = ["braut", "liebt", "studiert", "hasst", "zaubert", "zerstört"];
 var object = ["Zaubertränke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];

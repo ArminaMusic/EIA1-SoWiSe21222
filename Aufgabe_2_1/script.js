@@ -1,3 +1,9 @@
+/*
+Aufgabe: L02.1_EventInspector
+Name: Armina Music
+Matrikel: 268021
+Datum: 11.11.2021
+*/
 window.addEventListener("load", handleLoad);
 function handleLoad() {
     document.addEventListener("mousemove", setInfoBox);
