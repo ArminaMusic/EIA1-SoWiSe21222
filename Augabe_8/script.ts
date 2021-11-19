@@ -24,7 +24,7 @@ function handleLoad(_event: Event): void {
 
     drawBackground();
     drawSun({x: 100, y: 75});
-    drawCloud({x: 500, y: 125},{x: 250, y: 75});
+    drawCloud({x: 500, y: 125}, {x: 250, y: 75});
     drawMountens({});
 }
 
