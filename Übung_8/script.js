@@ -5,8 +5,8 @@ Matrikel: 268021
 Datum: 18.11.2021
 Kommentar: es6 Version
 */
-var L08_1_GenerativeKunst;
-(function (L08_1_GenerativeKunst) {
+var Ue08_1_GenerativeKunst;
+(function (Ue08_1_GenerativeKunst) {
     window.addEventListener("load", handleLoad);
     let crc2;
     let golden = 0.62;
@@ -16,11 +16,12 @@ var L08_1_GenerativeKunst;
             return;
         crc2 = canvas.getContext("2d");
         let horizon = crc2.canvas.height * golden;
+        console.log(horizon);
         drawBackground();
         drawSun({ x: 100, y: 75 });
         drawCloud({ x: 500, y: 125 }, { x: 250, y: 75 });
-        drawMountens({ x: 0, y: horizon }, 75, 200, "grey", "white");
-        drawMountens({ x: 0, y: horizon }, 50, 150, "grey", "lightgrey");
+        drawMountens({ x: 0, y: horizon }, 75, 200, "grey", "white"); // hinten
+        drawMountens({ x: 0, y: horizon }, 50, 150, "grey", "lightgrey"); //vorne
     }
     function drawBackground() {
         console.log("Background");
@@ -69,6 +70,7 @@ var L08_1_GenerativeKunst;
     }
     function drawMountens(_position, _min, _max, _colorLow, _colorHigh) {
         console.log("Mountens");
+        // drawMountens({x: 0, y: horizon}, 75, 200, "grey", "white");
         let stepMin = 10;
         let stepMax = 50;
         let x = 0;
@@ -79,7 +81,8 @@ var L08_1_GenerativeKunst;
         crc2.lineTo(0, -_max);
         do {
             x += stepMin + Math.random() * (stepMax - stepMin);
-            let y = _min - Math.random() * (_max - _min);
+            let y = Math.random() * _min * -1;
+            console.log(x, y);
             crc2.lineTo(x, y);
         } while (x < crc2.canvas.width);
         crc2.lineTo(x, 0);
@@ -91,5 +94,5 @@ var L08_1_GenerativeKunst;
         crc2.fill();
         crc2.restore();
     }
-})(L08_1_GenerativeKunst || (L08_1_GenerativeKunst = {}));
+})(Ue08_1_GenerativeKunst || (Ue08_1_GenerativeKunst = {}));
 //# sourceMappingURL=script.js.map

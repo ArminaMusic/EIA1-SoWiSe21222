@@ -6,7 +6,7 @@ Datum: 18.11.2021
 Kommentar: es6 Version
 */
 
-namespace L08_1_GenerativeKunst {
+namespace Ue08_1_GenerativeKunst {
 interface Vector {
     x: number;
     y: number;
@@ -23,12 +23,14 @@ function handleLoad(_event: Event): void {
     crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
     let horizon: number = crc2.canvas.height * golden;
+    console.log(horizon);
+    
 
     drawBackground();
     drawSun({x: 100, y: 75});
     drawCloud({x: 500, y: 125}, {x: 250, y: 75});
-    drawMountens({x: 0, y: horizon}, 75, 200, "grey", "white");
-    drawMountens({x: 0, y: horizon}, 50, 150, "grey", "lightgrey");
+    drawMountens({x: 0, y: horizon}, 75, 200, "grey", "white"); // hinten
+    drawMountens({x: 0, y: horizon}, 50, 150, "grey", "lightgrey"); //vorne
 }
 
 function drawBackground(): void {
@@ -91,7 +93,7 @@ function drawCloud(_position: Vector, _size: Vector): void {
 
 function drawMountens(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string): void {
     console.log("Mountens");
-
+    // drawMountens({x: 0, y: horizon}, 75, 200, "grey", "white");
     let stepMin: number = 10;
     let stepMax: number = 50;
     let x: number = 0; 
@@ -105,8 +107,9 @@ function drawMountens(_position: Vector, _min: number, _max: number, _colorLow: 
 
     do {
         x += stepMin + Math.random() * (stepMax - stepMin);
-        let y: number = _min - Math.random() * (_max - _min);
-
+        
+        let y: number = Math.random() * _min * -1;        
+        console.log(x, y);
         crc2.lineTo(x, y);
     } while (x < crc2.canvas.width);
 
