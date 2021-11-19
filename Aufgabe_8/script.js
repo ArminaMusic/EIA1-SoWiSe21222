@@ -15,7 +15,10 @@ var L08_1_GenerativeKunst;
             return;
         crc2 = canvas.getContext("2d");
         drawBackground();
-        drawCurvis();
+        for (let i = 0; i < 7; i++) {
+            drawCurve();
+        }
+        drawParticles({ x: 400, y: 1 }, { x: 600, y: 800 });
     }
     function drawBackground() {
         console.log("Background");
@@ -26,21 +29,45 @@ var L08_1_GenerativeKunst;
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
-    function drawCurvis() {
+    function drawCurve() {
         let x = 0;
         let y = 0;
+        crc2.save();
+        crc2.translate(0, Math.max(70, Math.random() * 500));
         crc2.beginPath();
-        crc2.moveTo(x, y);
+        crc2.moveTo(0, 0);
         do {
-            x += 50;
-            y = Math.sin(10) * Math.random();
+            x += 10;
+            y = Math.sin(x) * Math.random() * 100;
+            console.log(x, y);
             crc2.lineTo(x, y);
         } while (x < crc2.canvas.width);
-        let gradient = crc2.createLinearGradient(0, 0, 0, 0);
-        gradient.addColorStop(0, "red");
-        gradient.addColorStop(0.7, "orange");
-        crc2.lineTo(x, 0);
-        crc2.closePath();
+        crc2.strokeStyle = "red";
+        crc2.lineWidth = 2;
+        crc2.stroke();
+        crc2.restore();
+    }
+    function drawParticles(_position, _size) {
+        console.log("Cloud", _position, _size);
+        let nParticles = 100;
+        let radiusParticles = 20;
+        let particle = new Path2D();
+        let gradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticles);
+        particle.arc(0, 0, radiusParticles, 0, 2 * Math.PI);
+        gradient.addColorStop(0, "HSL(0, 100%, 100%, 0.5)");
+        gradient.addColorStop(1, "HSL(0, 100%, 100%, 0)");
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        crc2.fillStyle = gradient;
+        for (let drawn = 0; drawn < nParticles; drawn++) {
+            crc2.save();
+            let x = (Math.random() - 0.5) * _size.x;
+            let y = (Math.random() * _size.y);
+            crc2.translate(x, y);
+            crc2.fill(particle);
+            crc2.restore();
+        }
+        crc2.restore();
     }
 })(L08_1_GenerativeKunst || (L08_1_GenerativeKunst = {}));
 //# sourceMappingURL=script.js.map
