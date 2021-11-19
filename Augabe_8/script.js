@@ -15,10 +15,12 @@ var L08_1_GenerativeKunst;
         if (!canvas)
             return;
         crc2 = canvas.getContext("2d");
+        let horizon = crc2.canvas.height * golden;
         drawBackground();
         drawSun({ x: 100, y: 75 });
         drawCloud({ x: 500, y: 125 }, { x: 250, y: 75 });
-        drawMountens({});
+        drawMountens({ x: 0, y: horizon }, 75, 200, "grey", "white");
+        drawMountens({ x: 0, y: horizon }, 50, 150, "grey", "lightgrey");
     }
     function drawBackground() {
         console.log("Background");
@@ -65,8 +67,29 @@ var L08_1_GenerativeKunst;
         }
         crc2.restore();
     }
-    function drawMountens(_position, size) {
+    function drawMountens(_position, _min, _max, _colorLow, _colorHigh) {
         console.log("Mountens");
+        let stepMin = 10;
+        let stepMax = 50;
+        let x = 0;
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        crc2.beginPath();
+        crc2.moveTo(0, 0);
+        crc2.lineTo(0, -_max);
+        do {
+            x += stepMin + Math.random() * (stepMax - stepMin);
+            let y = _min - Math.random() * (_max - _min);
+            crc2.lineTo(x, y);
+        } while (x < crc2.canvas.width);
+        crc2.lineTo(x, 0);
+        crc2.closePath();
+        let gradient = crc2.createLinearGradient(0, 0, 0, -_max);
+        gradient.addColorStop(0, _colorLow);
+        gradient.addColorStop(0.7, _colorHigh);
+        crc2.fillStyle = gradient;
+        crc2.fill();
+        crc2.restore();
     }
 })(L08_1_GenerativeKunst || (L08_1_GenerativeKunst = {}));
 //# sourceMappingURL=script.js.map
