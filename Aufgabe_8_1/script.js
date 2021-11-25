@@ -18,7 +18,7 @@ var L08_1_GenerativeKunst;
         for (let i = 0; i < 7; i++) {
             drawCurve();
         }
-        drawParticles({ x: 400, y: 1 }, { x: 600, y: 800 });
+        drawParticles({ x: 600, y: 800 });
     }
     function drawBackground() {
         console.log("Background");
