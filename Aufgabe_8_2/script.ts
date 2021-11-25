@@ -12,6 +12,13 @@ namespace L08_2_GoldenerHerbst {
         y: number;
     }
 
+    // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min +1)) + min;
+      }
+
     window.addEventListener("load", handleLoad);
     let crc2: CanvasRenderingContext2D;
         
@@ -29,7 +36,48 @@ namespace L08_2_GoldenerHerbst {
         drawCloud({x: 680, y: 230}, "#dae6e1");
         drawCloud({x: 530, y: 97}, "#dae6e1");
         drawCloud({x: 250, y: 30}, "#dae6e1");
-        drawTree({x: 750, y: 300}); 
+        drawSingleTree(
+            {x: 100, y: 300},
+            [{x: 20, y: 50}, {x: 50, y: 21}, {x: 50, y: 25}, {x: 17, y: 55}],
+            [60, 35, 50, 50],
+            "#5e4434",
+            "#1f361f"
+        );
+        drawSingleTree(
+            {x: -50, y: 150},
+            [{x: 16, y: 30}, {x: 32, y: 13}, {x: 37, y: 10}, {x: 22, y: 30}],
+            [60, 35, 50, 50],
+            "#6b4f3f",
+            "#3a5e3a"
+        );
+        drawSingleTree(
+            {x: 150, y: 20},
+            [{x: 13, y: 20}, {x: 24, y: 10}, {x: 42, y: 35}, {x: 25, y: 43}],
+            [60, 35, 50, 50],
+            "#5e4434",
+            "#b32f1b"
+        );
+        drawSingleTree(
+            {x: 300, y: -40},
+            [{x: 10, y: 30}, {x: 35, y: -20}, {x: 50, y: 25}, {x: 40, y: 10}],
+            [60, 35, 50, 50],
+            "#6e5141",
+            "#3a5e3a"
+        );
+        drawSingleTree(
+            {x: 160, y: -70},
+            [{x: 10, y: 30}, {x: 35, y: -20}, {x: 50, y: 25}, {x: 40, y: 10}],
+            [60, 35, 50, 50],
+            "#6e5141",
+            "#b3511b"
+        );   
+        drawSingleTree(
+            {x: 60, y: 110},
+            [{x: 15, y: -2}, {x: 37, y: 35}, {x: 20, y: 55}, {x: 20, y: 40}],
+            [60, 35, 50, 50],
+            "#6b4f3f",
+            "#b3851b"
+        );
         drawSquirrel();
         drawLeafRed();
         drawLeafOrange();
@@ -60,7 +108,6 @@ namespace L08_2_GoldenerHerbst {
     function drawMountain(_fillColor: string): void {
 
         crc2.beginPath();
-        crc2.fillStyle = _fillColor;
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, 390);
         gradient.addColorStop(0.5, "#f7f7f7");
@@ -100,52 +147,26 @@ namespace L08_2_GoldenerHerbst {
         crc2.fill();
     }
 
-    function drawTree(_position: Vector): void {
+    function drawSingleTree(_position: Vector, treePositions: Array<Vector>, treeRadius: Array<number>, trunkColor: string, treeColor: string): void {
+        crc2.translate(_position.x, _position.y);
 
-        //TreeTrunk_1
+        //TreeTrunk
         crc2.beginPath();
-        crc2.fillStyle = "#5e4434";
-        crc2.fillRect(290, 325, 25, 110);
-
-        //Tree_1
-        crc2.beginPath();
-        crc2.fillStyle = "#1f361f";
-        crc2.arc(320, 310, 60, 0, 2 * Math.PI);
-        crc2.arc(290, 315, 35, 0, 2 * Math.PI);
-        crc2.arc(270, 300, 50, 0, 2 * Math.PI);
-        crc2.arc(310, 250, 50, 0, 2 * Math.PI);
+        crc2.fillStyle = trunkColor;
+        crc2.fillRect(0, 25, 25, 110);
         crc2.closePath();
-        crc2.fill();
 
-        //TreeTrunk_2
-        crc2.beginPath();
-        crc2.fillStyle = "#6b4f3f";
-  
-        crc2.fillRect(700, 405, 25, 110);
+        //Tree
+        crc2.fillStyle = treeColor;
+        
+        treeRadius.forEach((radius, index) => {
+            crc2.beginPath();
+            crc2.arc(treePositions[index].x, treePositions[index].y, radius, 0, 2 * Math.PI);
+            crc2.closePath();
+            crc2.fill();
+        });
 
-        //Tree_2
-        crc2.beginPath();
-        crc2.fillStyle = "#3a5e3a";
-        crc2.arc(680, 355, 60, 0, 2 * Math.PI);
-        crc2.arc(740, 375, 55, 0, 2 * Math.PI);
-        crc2.arc(690, 415, 35, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-
-        //TreeTrunk_3
-        crc2.beginPath();
-        crc2.fillStyle = "#6e5141";
-        crc2.fillRect(130, 425, 25, 110);
-
-        //Tree_3
-        crc2.beginPath();
-        crc2.fillStyle = "#3a5e3a";
-        crc2.arc(120, 410, 60, 0, 2 * Math.PI);
-        crc2.arc(190, 415, 35, 0, 2 * Math.PI);
-        crc2.arc(170, 400, 50, 0, 2 * Math.PI);
-        crc2.arc(110, 350, 50, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
+        crc2.restore();
     }
 
     function drawCloud(_position: Vector, _fillColor: string): void {
