@@ -5,19 +5,11 @@ Matrikel: 268021
 Datum: 23.11.2021
 Kommentar: es6 Version
 */
-
 namespace L08_2_GoldenerHerbst {
     interface Vector {
         x: number;
         y: number;
     }
-
-    // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-    function getRandomIntInclusive(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min +1)) + min;
-      }
 
     window.addEventListener("load", handleLoad);
     let crc2: CanvasRenderingContext2D;
@@ -29,13 +21,13 @@ namespace L08_2_GoldenerHerbst {
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
             
         drawSky();
-        drawSun({x: 300, y: 350}, "#e8d19e");
+        drawSun({x: 700, y: 350}, "#e8d19e");
         drawMountain("#b3b3b3");
-        drawMeadow({x: 0, y: 0});
-        drawCloud({x: 45, y: 125}, "#dae6e1");
-        drawCloud({x: 680, y: 230}, "#dae6e1");
-        drawCloud({x: 530, y: 97}, "#dae6e1");
-        drawCloud({x: 250, y: 30}, "#dae6e1");
+        drawGras({x: 0, y: 0});
+        drawCloud({x: 145, y: 125}, "#dae6e1");
+        drawCloud({x: 1220, y: 230}, "#dae6e1");
+        drawCloud({x: 900, y: 97}, "#dae6e1");
+        drawCloud({x: 500, y: 30}, "#dae6e1");
         drawSingleTree(
             {x: 100, y: 300},
             [{x: 20, y: 50}, {x: 50, y: 21}, {x: 50, y: 25}, {x: 17, y: 55}],
@@ -82,6 +74,7 @@ namespace L08_2_GoldenerHerbst {
         drawLeafRed();
         drawLeafOrange();
         drawLeafYellow();
+        drawLeafGreen();
         }
 
     function drawSky(): void {
@@ -129,7 +122,7 @@ namespace L08_2_GoldenerHerbst {
         crc2.fill();
     }
 
-    function drawMeadow(_position: Vector): void {
+    function drawGras(_position: Vector): void {
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, 800);
         gradient.addColorStop(0.5, "#abb8ad");
@@ -139,9 +132,23 @@ namespace L08_2_GoldenerHerbst {
         crc2.fillStyle = gradient;
 
         crc2.moveTo(_position.x, _position.y + 360); 
-        crc2.lineTo(_position.x + 1300, _position.y + 460);
-        crc2.lineTo(_position.x + 1300, _position.y + 620);
-        crc2.lineTo(_position.x - 3000, _position.y + 620);
+        crc2.lineTo(_position.x + 1500, _position.y + 460);
+        crc2.lineTo(_position.x + 1500, _position.y + 820);
+        crc2.lineTo(_position.x - 3000, _position.y + 820);
+
+        crc2.closePath();
+        crc2.fill();
+    }
+
+    function drawCloud(_position: Vector, _fillColor: string): void {
+
+        crc2.beginPath();
+        crc2.fillStyle = _fillColor;
+
+        crc2.arc(_position.x + 20, _position.y + 30, 20, 0, 2 * Math.PI);
+        crc2.arc(_position.x + 45, _position.y + 25, 30, 0, 2 * Math.PI);
+        crc2.arc(_position.x + 87, _position.y + 20, 35, 0, 2 * Math.PI);
+        crc2.arc(_position.x + 123, _position.y + 20, 20, 0, 2 * Math.PI);
 
         crc2.closePath();
         crc2.fill();
@@ -169,36 +176,26 @@ namespace L08_2_GoldenerHerbst {
         crc2.restore();
     }
 
-    function drawCloud(_position: Vector, _fillColor: string): void {
-
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-
-        crc2.arc(_position.x + 20, _position.y + 30, 20, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 45, _position.y + 25, 30, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 87, _position.y + 20, 35, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 123, _position.y + 20, 20, 0, 2 * Math.PI);
-
-        crc2.closePath();
-        crc2.fill();
-    }
 
     function drawSquirrel(): void {
     
     }
 
     function drawLeafRed(): void {
-    
+    //#b32f1b
     }
 
     function drawLeafOrange(): void {
-    
+    //#b3511b
     }
 
     function drawLeafYellow(): void {
-    
+    //#b3851b
     }
 
+    function drawLeafGreen(): void {
+    //#3a5e3a
+    }
 }
 
 
