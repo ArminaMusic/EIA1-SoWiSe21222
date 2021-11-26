@@ -108,6 +108,7 @@ var L08_2_GoldenerHerbst;
         crc2.restore();
     }
     function drawSquirrel() {
+        //#b32f1b
     }
     function drawLeafRed() {
         //#b32f1b

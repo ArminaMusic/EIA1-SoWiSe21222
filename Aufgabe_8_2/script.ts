@@ -178,7 +178,7 @@ namespace L08_2_GoldenerHerbst {
 
 
     function drawSquirrel(): void {
-    
+    //#b32f1b
     }
 
     function drawLeafRed(): void {
