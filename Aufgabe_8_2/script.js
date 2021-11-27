@@ -2,7 +2,7 @@
 Aufgabe: L08.2_GoldenerHerbst
 Name: Armina Music
 Matrikel: 268021
-Datum: 23.11.2021
+Datum: 27.11.2021
 Kommentar: es6 Version
 */
 var L08_2_GoldenerHerbst;
