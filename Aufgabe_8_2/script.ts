@@ -185,9 +185,9 @@ namespace L08_2_GoldenerHerbst {
         crc2.beginPath();
         crc2.fillStyle = _fillColor;
 
-        crc2.arc(_position.x + 20, _position.y + 30, 20, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 45, _position.y + 25, 30, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 87, _position.y + 20, 35, 0, 2 * Math.PI);
+        crc2.arc(_position.x + 20, _position.y + 40, 20, 0, 2 * Math.PI);
+        crc2.arc(_position.x + 45, _position.y + 25, 35, 0, 2 * Math.PI);
+        crc2.arc(_position.x + 87, _position.y + 20, 40, 0, 2 * Math.PI);
         crc2.arc(_position.x + 123, _position.y + 20, 20, 0, 2 * Math.PI);
 
         crc2.closePath();
