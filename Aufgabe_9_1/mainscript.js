@@ -3,7 +3,7 @@ Aufgabe: L09.1_OldMacDonaldsFarm
 Name: Armina Music
 Matrikel: 268021
 Datum: 04.12.2021
-Kommentar: es6 Version
+Kommentar: es2017 Version
 */
 var Farm;
 (function (Farm) {
@@ -24,14 +24,14 @@ var Farm;
         currentFood.fish = 345;
         currentFood.corn = 270;
         currentFood.carrots = 375;
-        document.querySelector("#newday").addEventListener("click", feedAnimals);
+        document.querySelector("#nextDay").addEventListener("click", foodForAnimal);
     }
     function loadAnimals() {
-        let cow = new Farm.Animal("Milkboi", "cow", "greens", "moo", 15);
-        let dog = new Farm.Animal("Good Doggo", "dog", "meat", "woof", 8);
-        let cat = new Farm.Animal("Sir Miauz", "cat", "fish", "miauz", 4);
-        let chicken = new Farm.Animal("Kentucky", "chicken", "corn", "bock", 3);
-        let pig = new Farm.Animal("Bacon", "pig", "carrots", "quick", 9);
+        let cow = new Farm.Animal("Milkboi", "cow", "greens", "moo", 10);
+        let dog = new Farm.Animal("Good Doggo", "dog", "meat", "woof", 12);
+        let cat = new Farm.Animal("Sir Miauz", "cat", "fish", "miauz", 5);
+        let chicken = new Farm.Animal("Kentucky", "chicken", "corn", "bock", 30);
+        let pig = new Farm.Animal("Bacon", "pig", "carrots", "quick", 25);
         animals.push(cow);
         animals.push(dog);
         animals.push(cat);
@@ -72,6 +72,12 @@ var Farm;
         currentFood.fish -= animals[2].foodneed;
         currentFood.corn -= animals[3].foodneed;
         currentFood.carrots -= animals[4].foodneed;
+        for (const [key, foodAmount] of Object.entries(currentFood)) {
+            if (foodAmount <= 0) {
+                alert("no more food!");
+                window.location.reload();
+            }
+        }
         let inventoryDiv = document.getElementById("inventory");
         inventoryDiv.innerHTML = "inventory:" + "<br>" + "<br>" +
             currentFood.greens + " kg greens " + "<br>" +

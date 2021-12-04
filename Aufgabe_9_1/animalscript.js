@@ -3,7 +3,7 @@ Aufgabe: L09.1_OldMacDonaldsFarm
 Name: Armina Music
 Matrikel: 268021
 Datum: 04.12.2021
-Kommentar: es6 Version
+Kommentar: es2017 Version
 */
 var Farm;
 (function (Farm) {

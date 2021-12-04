@@ -3,12 +3,10 @@ Aufgabe: L09.1_OldMacDonaldsFarm
 Name: Armina Music
 Matrikel: 268021
 Datum: 04.12.2021
-Kommentar: es6 Version
+Kommentar: es2017 Version
 */
-
 namespace Farm {
     let animals: Animal[] = [];
-
     interface Food {
         greens: number;
         corn: number;
@@ -37,15 +35,15 @@ namespace Farm {
         currentFood.corn = 270;
         currentFood.carrots = 375;
 
-        document.querySelector("#newday").addEventListener("click", feedAnimals);
+        document.querySelector("#nextDay").addEventListener("click", foodForAnimal);
 }
 
     function loadAnimals(): void {
-        let cow: Animal = new Animal("Milkboi", "cow", "greens", "moo", 15);
-        let dog: Animal = new Animal("Good Doggo", "dog", "meat", "woof", 8);
-        let cat: Animal = new Animal("Sir Miauz", "cat", "fish", "miauz", 4);
-        let chicken: Animal = new Animal("Kentucky", "chicken", "corn", "bock", 3);
-        let pig: Animal = new Animal("Bacon", "pig", "carrots", "quick", 9);
+        let cow: Animal = new Animal("Milkboi", "cow", "greens", "moo", 10);
+        let dog: Animal = new Animal("Good Doggo", "dog", "meat", "woof", 12);
+        let cat: Animal = new Animal("Sir Miauz", "cat", "fish", "miauz", 5);
+        let chicken: Animal = new Animal("Kentucky", "chicken", "corn", "bock", 30);
+        let pig: Animal = new Animal("Bacon", "pig", "carrots", "quick", 25);
 
         animals.push(cow);
         animals.push(dog);
@@ -88,11 +86,19 @@ namespace Farm {
     }
 
     function foodForAnimal(): void {
+               
         currentFood.greens -= animals[0].foodneed;
         currentFood.meat -= animals[1].foodneed;
         currentFood.fish -= animals[2].foodneed;
         currentFood.corn -= animals[3].foodneed;
         currentFood.carrots -= animals[4].foodneed;
+
+        for (const [key, foodAmount] of Object.entries(currentFood)) {
+            if (foodAmount <= 0){
+                alert("no more food!");
+                window.location.reload();
+            }
+          }
 
         let inventoryDiv: HTMLElement = document.getElementById("inventory");
         inventoryDiv.innerHTML = "inventory:" + "<br>" + "<br>" + 
