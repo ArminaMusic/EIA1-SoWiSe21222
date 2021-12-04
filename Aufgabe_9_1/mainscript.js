@@ -31,7 +31,7 @@ var Farm;
         let cow = new Farm.Animal("Milkboi", "cow", "greens", "moo", 15);
         let dog = new Farm.Animal("Good Doggo", "dog", "meat", "woof", 8);
         let cat = new Farm.Animal("Sir Miauz", "cat", "fish", "miauz", 4);
-        let chicken = new Farm.Animal("Kentucky", "chicken", "corn", "bock-bock", 3);
+        let chicken = new Farm.Animal("Kentucky", "chicken", "corn", "bock", 3);
         let pig = new Farm.Animal("Bacon", "pig", "carrots", "quick", 9);
         animals.push(cow);
         animals.push(dog);
