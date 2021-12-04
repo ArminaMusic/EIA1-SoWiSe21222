@@ -4,7 +4,6 @@ Name: Armina Music
 Matrikel: 268021
 Datum: 04.12.2021
 Kommentar: es6 Version
-Getauscht mit: 
 */
 
 namespace Farm {
