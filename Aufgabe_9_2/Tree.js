@@ -27,6 +27,25 @@ var Golden;
             this.treeColor = _treeFillColor;
             this.trunkColor = _trunkFillColor;
             this.shape = _shape;
+            console.log(_position);
+        }
+        draw() {
+            Golden.crc2.save();
+            Golden.crc2.translate(this.position.x, this.position.y);
+            //TreeTrunk
+            Golden.crc2.beginPath();
+            Golden.crc2.fillStyle = this.trunkColor;
+            Golden.crc2.fillRect(0, 25, 25, 110);
+            Golden.crc2.closePath();
+            //Tree
+            Golden.crc2.fillStyle = this.treeColor;
+            this.treeRadius.forEach((radius, index) => {
+                Golden.crc2.beginPath();
+                Golden.crc2.arc(this.treePositions[this.shape][index].x, this.treePositions[this.shape][index].y, radius, 0, 2 * Math.PI);
+                Golden.crc2.closePath();
+                Golden.crc2.fill();
+            });
+            Golden.crc2.restore();
         }
     }
     Golden.Tree = Tree;

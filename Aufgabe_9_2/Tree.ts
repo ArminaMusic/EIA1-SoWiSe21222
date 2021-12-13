@@ -51,29 +51,31 @@ namespace Golden {
             this.treeColor = _treeFillColor;
             this.trunkColor = _trunkFillColor;
             this.shape = _shape;
+
+            console.log(_position);
         }
 
-            // draw(): void {
-            //     crc2.save();
-            //     crc2.translate(this.position.x, this.position.y);
+            draw(): void {
+                crc2.save();
+                crc2.translate(this.position.x, this.position.y);
 
-            //     //TreeTrunk
-            //     crc2.beginPath();
-            //     crc2.fillStyle = this.trunkColor;
-            //     crc2.fillRect(0, 25, 25, 110);
-            //     crc2.closePath();
+                //TreeTrunk
+                crc2.beginPath();
+                crc2.fillStyle = this.trunkColor;
+                crc2.fillRect(0, 25, 25, 110);
+                crc2.closePath();
 
-            //     //Tree
-            //     crc2.fillStyle = this.treeColor;
-            //     this.treeRadius.forEach((radius, index) => {
-            //         crc2.beginPath();
-            //         crc2.arc(this.treePositions[index].x, this.treePositions[index].y, radius, 0, 2 * Math.PI);
-            //         crc2.closePath();
-            //         crc2.fill();
-            //     });
+                //Tree
+                crc2.fillStyle = this.treeColor;
+                this.treeRadius.forEach((radius, index) => {
+                    crc2.beginPath();
+                    crc2.arc(this.treePositions[this.shape][index].x, this.treePositions[this.shape][index].y, radius, 0, 2 * Math.PI);
+                    crc2.closePath();
+                    crc2.fill();
+                });
 
-            //     crc2.restore();
-            // }
+                crc2.restore();
+            }
     }
 }
 

@@ -13,7 +13,6 @@ var Golden;
     let squirrels = [];
     let trees = [];
     function handleLoad(_event) {
-        console.log(Golden.Tree, Golden.Squirrel);
         let canvas = document.querySelector("canvas");
         if (!canvas)
             return;
@@ -21,8 +20,8 @@ var Golden;
         // Clouds
         let cloudCount = 4;
         for (let i = 0; i < cloudCount; i++) {
-            let canvasRandomX = Math.random() * Golden.crc2.canvas.width;
-            let canvasRandomY = Math.random() * Golden.crc2.canvas.height - 600;
+            let canvasRandomX = (Math.random() * (Golden.crc2.canvas.width - 100)) + 100;
+            let canvasRandomY = Math.random() * (Golden.crc2.canvas.height - 600);
             let newCloud = new Golden.Cloud(new Golden.Vector(canvasRandomX, canvasRandomY), "#f7f7f7");
             clouds.push(newCloud);
         }
@@ -46,16 +45,15 @@ var Golden;
             let newSquirrel = new Golden.Squirrel(new Golden.Vector(canvasRandomX, canvasRandomY), squirrelColors[random]);
             squirrels.push(newSquirrel);
         }
-        //Trees
-        console.log(Golden.Tree);
-        let treeCount = 10;
+        //Trees        
+        let treeCount = 17;
         let treeColors = ["#1f361f", "#b32f1b", "#b3511b", "#b3851b", "#3a5e3a"];
         let treeTrunkColors = ["#5e4434", "#6b4f3f", "#6e5141"];
         for (let i = 0; i < treeCount; i++) {
             let treeRandom = Math.floor(Math.random() * 5);
             let treeTrunkRandom = Math.floor(Math.random() * 3);
-            let canvasRandomX = Math.random() * Golden.crc2.canvas.width;
-            let canvasRandomY = Math.random() * Golden.crc2.canvas.height + 200;
+            let canvasRandomX = (Math.random() * (Golden.crc2.canvas.width - 100)) + 100;
+            let canvasRandomY = Math.random() * (Golden.crc2.canvas.height) + 390;
             let treeShapeRandom = Math.floor(Math.random() * 10);
             let newTree = new Golden.Tree(new Golden.Vector(canvasRandomX, canvasRandomY), treeColors[treeRandom], treeTrunkColors[treeTrunkRandom], treeShapeRandom);
             trees.push(newTree);
@@ -125,21 +123,18 @@ var Golden;
         drawMountain(0, 350, "#575554");
         Golden.crc2.restore();
         Golden.crc2.save();
-        // drawSingleTree(100, 200, [new Vector (20, 50), new Vector (50, 21), new Vector (50, 25), new Vector (17, 55)], [60, 35, 50, 50], "#5e4434", "#1f361f");
-        // crc2.restore();
-        // crc2.save();
+        clouds.forEach(cloud => {
+            cloud.draw();
+        });
         leafs.forEach(leaf => {
             leaf.draw();
             leaf.move(0.02);
-        });
-        clouds.forEach(cloud => {
-            cloud.draw();
         });
         squirrels.forEach(squirrel => {
             squirrel.draw();
         });
         trees.forEach(tree => {
-            // tree.draw();
+            tree.draw();
         });
     }
     // update();

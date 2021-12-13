@@ -16,10 +16,7 @@ namespace Golden {
     let squirrels: Array<Squirrel> = [];
     let trees: Array<Tree> = [];
 
-    function handleLoad(_event: Event): void {
-
-        console.log(Tree, Squirrel);
-        
+    function handleLoad(_event: Event): void {        
         
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
         if (!canvas)
@@ -30,8 +27,8 @@ namespace Golden {
         let cloudCount: number = 4;
 
         for (let i: number = 0; i < cloudCount; i++) {
-            let canvasRandomX: number = Math.random() * crc2.canvas.width;
-            let canvasRandomY: number = Math.random() * crc2.canvas.height - 600;
+            let canvasRandomX: number = (Math.random() * (crc2.canvas.width - 100)) + 100;
+            let canvasRandomY: number = Math.random() * (crc2.canvas.height - 600);
 
             let newCloud: Cloud = new Cloud(new Vector(canvasRandomX, canvasRandomY), "#f7f7f7");
             
@@ -66,18 +63,16 @@ namespace Golden {
             squirrels.push(newSquirrel);
         }
 
-        //Trees
-        console.log(Tree);
-        
-        let treeCount: number = 10;
+        //Trees        
+        let treeCount: number = 17;
         let treeColors: Array<string> = ["#1f361f", "#b32f1b", "#b3511b", "#b3851b", "#3a5e3a"]; 
         let treeTrunkColors: Array<string> = ["#5e4434", "#6b4f3f", "#6e5141"];
 
         for (let i: number = 0; i < treeCount; i++) {
             let treeRandom: number = Math.floor(Math.random() * 5);
             let treeTrunkRandom: number = Math.floor(Math.random() * 3);
-            let canvasRandomX: number = Math.random() * crc2.canvas.width;
-            let canvasRandomY: number = Math.random() * crc2.canvas.height + 200;
+            let canvasRandomX: number = (Math.random() * (crc2.canvas.width - 100)) + 100;
+            let canvasRandomY: number = Math.random() * (crc2.canvas.height) + 390;
             let treeShapeRandom: number = Math.floor(Math.random() * 10);
 
             let newTree: Tree = new Tree(new Vector(canvasRandomX, canvasRandomY), treeColors[treeRandom], treeTrunkColors[treeTrunkRandom], treeShapeRandom);
@@ -171,17 +166,13 @@ namespace Golden {
         crc2.restore();
         crc2.save();
 
-        // drawSingleTree(100, 200, [new Vector (20, 50), new Vector (50, 21), new Vector (50, 25), new Vector (17, 55)], [60, 35, 50, 50], "#5e4434", "#1f361f");
-        // crc2.restore();
-        // crc2.save();
+        clouds.forEach(cloud => {
+            cloud.draw();
+        });
 
         leafs.forEach(leaf => {
             leaf.draw();
             leaf.move(0.02);
-        });
-
-        clouds.forEach(cloud => {
-            cloud.draw();
         });
 
         squirrels.forEach(squirrel => {
@@ -189,7 +180,7 @@ namespace Golden {
         });
 
         trees.forEach(tree => {
-            // tree.draw();
+            tree.draw();
         });
     }   
         
