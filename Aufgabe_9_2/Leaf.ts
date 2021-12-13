@@ -7,12 +7,14 @@ Kommentar: es6 Version
 */
 namespace Golden {
     export class Leaf {
+        
         position: Vector;
         velocity: Vector;
         fillColor: string;
         shape: number;
 
         constructor(_position: Vector, _fillColor: string, _shape: number) {
+
             this.position = _position;
             this.velocity = new Vector(0, 0);
             this.velocity.random(100, 400);

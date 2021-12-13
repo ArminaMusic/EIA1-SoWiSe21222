@@ -8,10 +8,12 @@ Kommentar: es6 Version
 namespace Golden {
 
     export class Squirrel {
+
         position: Vector;
         fillColor: string;
 
         constructor(_position: Vector, _fillColor: string) {
+            
             this.position = _position;
             this.fillColor = _fillColor;
         }
