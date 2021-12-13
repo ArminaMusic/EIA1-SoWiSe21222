@@ -5,13 +5,13 @@ Matrikel: 268021
 Datum: 13.12.2021
 Kommentar: es6 Version
 */
-
 namespace Golden {
 
     window.addEventListener("load", handleLoad);
-    let crc2: CanvasRenderingContext2D;
 
     export let crc2: CanvasRenderingContext2D;
+
+    let leafs: Array<Leaf> = [];
 
     function handleLoad(_event: Event): void {
         
@@ -20,97 +20,22 @@ namespace Golden {
         return;
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
-        drawSky();
-        drawSun({x: 800, y: 350}, "#e8d19e");
-        drawMountain("#b3b3b3");
-        drawGras({x: 0, y: 0});
-        drawCloud({x: 100, y: 125}, "#dae6e1");
-        drawCloud({x: 1230, y: 230}, "#dae6e1");
-        drawCloud({x: 900, y: 97}, "#dae6e1");
-        drawCloud({x: 500, y: 30}, "#dae6e1");
-        drawSingleTree(
-            {x: 120, y: 300},
-            [{x: 20, y: 50}, {x: 50, y: 21}, {x: 50, y: 25}, {x: 17, y: 55}],
-            [60, 35, 50, 50],
-            "#5e4434",
-            "#1f361f"
-        );
-        drawSingleTree(
-            {x: 80, y: 575},
-            [{x: 15, y: -2}, {x: 37, y: 35}, {x: 20, y: 55}, {x: 20, y: 40}],
-            [60, 35, 50, 50],
-            "#6b4f3f",
-            "#b3851b"
-        );
-        drawSingleTree(
-            {x: 240, y: 450},
-            [{x: 13, y: 20}, {x: 24, y: 10}, {x: 42, y: 35}, {x: 25, y: 43}],
-            [60, 35, 50, 50],
-            "#5e4434",
-            "#b32f1b"
-        );
-        drawSingleTree(
-            {x: 300, y: 600},
-            [{x: 16, y: 30}, {x: 32, y: 13}, {x: 37, y: 10}, {x: 22, y: 30}],
-            [60, 35, 50, 50],
-            "#6b4f3f",
-            "#3a5e3a"
-        );
-        drawSingleTree(
-            {x: 720, y: 390},
-            [{x: 13, y: 20}, {x: 24, y: 10}, {x: 42, y: 35}, {x: 25, y: 43}],
-            [60, 35, 50, 50],
-            "#5e4434",
-            "#b32f1b"
-        );
-        drawSingleTree(
-            {x: 700, y: 590},
-            [{x: 10, y: 30}, {x: 35, y: -20}, {x: 50, y: 25}, {x: 40, y: 10}],
-            [60, 35, 50, 50],
-            "#6e5141",
-            "#3a5e3a"
-        );
-        drawSingleTree(
-            {x: 1000, y: 520},
-            [{x: 10, y: 30}, {x: 35, y: -20}, {x: 50, y: 25}, {x: 40, y: 10}],
-            [60, 35, 50, 50],
-            "#6e5141",
-            "#b3511b"
-        );   
-        drawSingleTree(
-            {x: 940, y: 310},
-            [{x: 15, y: -2}, {x: 37, y: 35}, {x: 20, y: 55}, {x: 20, y: 40}],
-            [60, 35, 50, 50],
-            "#6b4f3f",
-            "#b3851b"
-        );
-        drawSingleTree(
-            {x: 1220, y: 600},
-            [{x: 13, y: 20}, {x: 24, y: 10}, {x: 42, y: 35}, {x: 25, y: 43}],
-            [60, 35, 50, 50],
-            "#5e4434",
-            "#b32f1b"
-        );
-        drawSingleTree(
-            {x: 1270, y: 390},
-            [{x: 10, y: 30}, {x: 35, y: -20}, {x: 50, y: 25}, {x: 40, y: 10}],
-            [60, 35, 50, 50],
-            "#6e5141",
-            "#3a5e3a"
-        );
-        drawSquirrel({x: 550, y: 550}, "#824f2b");
-        
-        drawLeafRed({x: 40, y: 350}, "#b32f1b");
-        
-        drawLeafOrange({x: 400, y: 650}, {x: 0, y: 0}, "#b3511b");
-        
-        drawLeafYellow({x: 180, y: 650}, {x: 0, y: 0}, "#b3851b");
-        
-        drawLeafGreen({x: 15, y: 550}, {x: 0, y: 0}, "#3a5e3a");
-       
-        }
+        // Leafs
+        let leafCount: number = 30;
+        let leafColors: Array<string> = ["#b32f1b", "#b3511b", "#b3851b", "#3a5e3a"];
 
-    function drawSky(): void {    
+        for (let i: number = 0; i < leafCount; i++) {
+            let random: number = Math.floor(Math.random() * 4);
+            let canvasRandomX: number = Math.random() * crc2.canvas.width;
+            let canvasRandomY: number = Math.random() * crc2.canvas.height;
+
+            let newLeaf: Leaf = new Leaf(new Vector(canvasRandomX, canvasRandomY), leafColors[random], random);
+            
+            leafs.push(newLeaf);
+        }
+    }
+
+    function drawSky(_x: number, _y: number): void {    
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "#c98838");
@@ -121,17 +46,17 @@ namespace Golden {
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
-    function drawSun(_position: Vector, _fillColor: string): void {
+    function drawSun(_x: number, _y: number, _fillColor: string): void {
 
         crc2.beginPath();
         crc2.fillStyle = _fillColor;
 
-        crc2.arc(550, _position.y, 200, 0, 5 * Math.PI);
+        crc2.arc(550, _y, 200, 0, 5 * Math.PI);
         crc2.fill();
         crc2.closePath();
     }
 
-    function drawMountain(_fillColor: string): void {
+    function drawMountain(_x: number, _y: number, _fillColor: string): void {
 
         crc2.beginPath();
 
@@ -154,7 +79,7 @@ namespace Golden {
         crc2.fill();
     }
 
-    function drawGras(_position: Vector): void {
+    function drawGras(_x: number, _y: number): void {
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, 800);
         gradient.addColorStop(0.5, "#abb8ad");
@@ -163,33 +88,19 @@ namespace Golden {
         crc2.beginPath();
         crc2.fillStyle = gradient;
 
-        crc2.moveTo(_position.x, _position.y + 360); 
-        crc2.lineTo(_position.x + 1500, _position.y + 460);
-        crc2.lineTo(_position.x + 1500, _position.y + 820);
-        crc2.lineTo(_position.x - 3000, _position.y + 820);
+        crc2.moveTo(_x, _y + 360); 
+        crc2.lineTo(_x + 1500, _y + 460);
+        crc2.lineTo(_x + 1500, _y + 820);
+        crc2.lineTo(_x - 3000, _y + 820);
 
         crc2.closePath();
         crc2.fill();
     }
 
-    function drawCloud(_position: Vector, _fillColor: string): void {
-
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-
-        crc2.arc(_position.x + 20, _position.y + 40, 20, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 45, _position.y + 25, 35, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 87, _position.y + 20, 40, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 123, _position.y + 20, 20, 0, 2 * Math.PI);
-
-        crc2.closePath();
-        crc2.fill();
-    }
-
-    function drawSingleTree(_position: Vector, treePositions: Array<Vector>, treeRadius: Array<number>, trunkColor: string, treeColor: string): void {
+    function drawSingleTree(_x: number, _y: number, treePositions: Array<Vector>, treeRadius: Array<number>, trunkColor: string, treeColor: string): void {
         
         crc2.save();
-        crc2.translate(_position.x, _position.y);
+        crc2.translate(_x, _y);
 
         //TreeTrunk
         crc2.beginPath();
@@ -207,101 +118,43 @@ namespace Golden {
         });
 
         crc2.restore();
-    }
+    }    
 
-    function drawSquirrel(_position: Vector, _fillColor: string): void {
-
-        //Body
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-        crc2.ellipse(_position.x + -90, _position.y + 20, 15, 22, -10, 20, 40);
-        crc2.closePath();
-        crc2.fill();
-
-        //Head
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-        crc2.ellipse(_position.x + -100, _position.y + 4, 13, 13, -10, 20, 40);
-        crc2.closePath();
-        crc2.fill();
-
-        //Eye
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-        crc2.ellipse(_position.x + -100, _position.y + -7, 7, 7, -10, 20, 40);
-        crc2.closePath();
-        crc2.fill();
-
-        //Ear
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-        crc2.ellipse(_position.x + -100, _position.y + -7, 7, 7, -10, 20, 40);
-        crc2.closePath();
-        crc2.fill();
-
-        //Arm
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-        crc2.ellipse(_position.x + -107, _position.y + 24, 9, 6, -10, 20, 40);
-        crc2.closePath();
-        crc2.fill();
-
-        //Leg
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-        crc2.ellipse(_position.x + -90, _position.y + 40, 10, 5, -10, 20, 40);
-        crc2.closePath();
-        crc2.fill();
-
-        //Tail
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-        crc2.ellipse(_position.x + -62, _position.y + 23, 23, 9, -10, 20, 40);
-        crc2.closePath();
-        crc2.fill();
-    }
-
-    function drawLeafRed(_position: Vector, _fillColor: string): void {
+    function update(): void {   
+        
+        // crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
         crc2.save();
-        crc2.translate(_position.x, _position.y);
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
 
-        crc2.bezierCurveTo(1, 1, 10, 30, 30, 20);
-
-        crc2.closePath();
-        crc2.fill();
+        drawSky(0, 0);
         crc2.restore();
-    }
+        crc2.save();
 
-    function drawLeafOrange(_position: Vector, _size: Vector, _fillColor: string): void {
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
+        drawGras(0, 0);
+        crc2.restore();
+        crc2.save();
 
-        crc2.ellipse(_position.x + 10, _position.y + 10, 9, 6, -10, 20, 40);
+        // Cloud.(0, 0, "White");
+        // crc2.restore();
+        // crc2.save();
 
-        crc2.closePath();
-        crc2.fill();
-    }
+        drawSun(180, 100, "#f7fae1");
+        crc2.restore();
+        crc2.save();
 
-    function drawLeafYellow(_position: Vector, _size: Vector, _fillColor: string): void {
-    
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
+        drawMountain(0, 350, "#575554");
+        crc2.restore();
+        crc2.save();
 
-        crc2.arc(_position.x + 20, _position.y + 30, 10, 0, 2 * Math.PI);
+        drawSingleTree(100, 200, [new Vector (20, 50), new Vector (50, 21), new Vector (50, 25), new Vector (17, 55)], [60, 35, 50, 50], "#5e4434", "#1f361f");
+        crc2.restore();
+        crc2.save();
 
-        crc2.closePath();
-        crc2.fill();
-    }
-
-    function drawLeafGreen(_position: Vector, _size: Vector, _fillColor: string): void {
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-
-        crc2.ellipse(_position.x + 10, _position.y + 10, 9, 6, -10, 20, 40, true);
-
-        crc2.closePath();
-        crc2.fill();
-    }
-}
+        leafs.forEach(leaf => {
+            leaf.draw();
+            leaf.move(0.02);
+        });
+    }   
+        
+    // update();
+    window.setInterval(update, 60);
+    } 
