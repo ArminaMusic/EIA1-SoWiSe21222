@@ -1,13 +1,11 @@
 /*
-Aufgabe: L09.2_GoldenerHerbstClasses
+Aufgabe: L10.2_GoldenerHerbstPolymorphie
 Name: Armina Music
 Matrikel: 268021
-Datum: 13.12.2021
-Kommentar: es6 Version
+Datum: 08.01.2022
+Kommentar: es2017 Version
 */
-
-namespace Golden {
-
+namespace Golden_10_2 {
     export class Tree {
 
         position: Vector;
@@ -20,8 +18,6 @@ namespace Golden {
         constructor(_position: Vector, _treeFillColor: string, _trunkFillColor: string, _shape: number) {
             
             this.position = _position;
-            
-
             this.treePositions = 
             [
 
@@ -55,27 +51,27 @@ namespace Golden {
             console.log(_position);
         }
 
-            draw(): void {
-                crc2.save();
-                crc2.translate(this.position.x, this.position.y);
+        draw(): void {
+            crc2.save();
+            crc2.translate(this.position.x, this.position.y);
 
-                //TreeTrunk
+            //TreeTrunk
+            crc2.beginPath();
+            crc2.fillStyle = this.trunkColor;
+            crc2.fillRect(0, 25, 25, 110);
+            crc2.closePath();
+
+            //Tree
+            crc2.fillStyle = this.treeColor;
+            this.treeRadius.forEach((radius, index) => {
                 crc2.beginPath();
-                crc2.fillStyle = this.trunkColor;
-                crc2.fillRect(0, 25, 25, 110);
+                crc2.arc(this.treePositions[this.shape][index].x, this.treePositions[this.shape][index].y, radius, 0, 2 * Math.PI);
                 crc2.closePath();
+                crc2.fill();
+            });
 
-                //Tree
-                crc2.fillStyle = this.treeColor;
-                this.treeRadius.forEach((radius, index) => {
-                    crc2.beginPath();
-                    crc2.arc(this.treePositions[this.shape][index].x, this.treePositions[this.shape][index].y, radius, 0, 2 * Math.PI);
-                    crc2.closePath();
-                    crc2.fill();
-                });
-
-                crc2.restore();
-            }
+            crc2.restore();
+        }
     }
 }
 

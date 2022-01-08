@@ -1,18 +1,17 @@
 /*
-Aufgabe: L09.2_GoldenerHerbstClasses
+Aufgabe: L10.2_GoldenerHerbstPolymorphie
 Name: Armina Music
 Matrikel: 268021
-Datum: 13.12.2021
-Kommentar: es6 Version
+Datum: 08.01.2022
+Kommentar: es2017 Version
 */
-namespace Golden {    
+namespace Golden_10_2 {   
 
     window.addEventListener("load", handleLoad);
 
     export let crc2: CanvasRenderingContext2D;
 
-    let leafs: Array<Leaf> = [];
-    let clouds: Array<Cloud> = [];
+    let moveables: Moveable[] = [];
     let squirrels: Array<Squirrel> = [];
     let trees: Array<Tree> = [];
 
@@ -32,8 +31,10 @@ namespace Golden {
 
             let newCloud: Cloud = new Cloud(new Vector(canvasRandomX, canvasRandomY), "#f7f7f7");
             
-            clouds.push(newCloud);
+            moveables.push(newCloud);
         }
+
+        console.log(moveables);
 
         // Leafs
         let leafCount: number = 30;
@@ -46,7 +47,7 @@ namespace Golden {
 
             let newLeaf: Leaf = new Leaf(new Vector(canvasRandomX, canvasRandomY), leafColors[random], random);
             
-            leafs.push(newLeaf);
+            moveables.push(newLeaf);
         }
 
         //Squirrel  
@@ -145,7 +146,7 @@ namespace Golden {
 
         crc2.closePath();
         crc2.fill();
-    }
+    }   
 
     //Update
     function update(): void {   
@@ -166,14 +167,10 @@ namespace Golden {
         crc2.restore();
         crc2.save();
 
-        clouds.forEach(cloud => {
-            cloud.draw();
-        });
-
-        leafs.forEach(leaf => {
-            leaf.draw();
-            leaf.move(0.02);
-        });
+        for (let moveable of moveables) {
+            moveable.move(1 / 50);
+            moveable.draw();
+        }
 
         squirrels.forEach(squirrel => {
             squirrel.draw();
@@ -186,4 +183,4 @@ namespace Golden {
         
     // update();
     window.setInterval(update, 60);
-    } 
+} 

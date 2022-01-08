@@ -1,12 +1,12 @@
 /*
-Aufgabe: L09.2_GoldenerHerbstClasses
+Aufgabe: L10.2_GoldenerHerbstPolymorphie
 Name: Armina Music
 Matrikel: 268021
-Datum: 13.12.2021
+Datum: 08.01.2022
 Kommentar: es6 Version
 */
-namespace Golden {
-    export class Leaf {
+namespace Golden_10_2 {
+    export class Leaf extends Moveable {
         
         position: Vector;
         velocity: Vector;
@@ -14,8 +14,8 @@ namespace Golden {
         shape: number;
 
         constructor(_position: Vector, _fillColor: string, _shape: number) {
-
-            this.position = _position;
+            super(_position);
+            
             this.velocity = new Vector(0, 0);
             this.velocity.random(100, 400);
             this.fillColor = _fillColor;
@@ -66,24 +66,5 @@ namespace Golden {
         drawShape3(): void {
             crc2.ellipse(10, 10, 9, 6, -10, 20, 40, true);
         }
-            
-        move(_timeslice: number): void {
-           
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-            this.position.add(offset);
-         
-            if (this.position.x < 0)
-            this.position.x += crc2.canvas.width;
-         
-            if (this.position.y < 0)
-            this.position.y += crc2.canvas.height;
-         
-            if (this.position.x > crc2.canvas.width)
-            this.position.x -= crc2.canvas.width;
-         
-            if (this.position.y > crc2.canvas.height)
-            this.position.y -= crc2.canvas.height;
-            }
-        }
+    }
 }

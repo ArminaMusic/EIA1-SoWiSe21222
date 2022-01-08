@@ -1,20 +1,23 @@
 /*
-Aufgabe: L09.2_GoldenerHerbstClasses
+Aufgabe: L10.2_GoldenerHerbstPolymorphie
 Name: Armina Music
 Matrikel: 268021
-Datum: 13.12.2021
-Kommentar: es6 Version
+Datum: 08.01.2022
+Kommentar: es2017 Version
 */
-namespace Golden {
-    export class Cloud {
+namespace Golden_10_2 {
+    export class Cloud extends Moveable {
 
         position: Vector;
         fillColor: string;
+        velocity: Vector;
 
         constructor(_position: Vector, _fillColor: string) {
+            super(_position);
             
             this.position = _position;
             this.fillColor = _fillColor;
+            this.velocity = new Vector(150, 0);
         }
 
             draw(): void {  

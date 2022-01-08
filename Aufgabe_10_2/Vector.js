@@ -1,12 +1,12 @@
 /*
-Aufgabe: L09.2_GoldenerHerbstClasses
+Aufgabe: L10.2_GoldenerHerbstPolymorphie
 Name: Armina Music
 Matrikel: 268021
-Datum: 13.12.2021
-Kommentar: es6 Version
+Datum: 08.01.2022
+Kommentar: es2017 Version
 */
-var Golden;
-(function (Golden) {
+var Golden_10_2;
+(function (Golden_10_2) {
     class Vector {
         constructor(_x, _y) {
             this.set(_x, _y);
@@ -33,6 +33,6 @@ var Golden;
             return new Vector(this.x, this.y);
         }
     }
-    Golden.Vector = Vector;
-})(Golden || (Golden = {}));
+    Golden_10_2.Vector = Vector;
+})(Golden_10_2 || (Golden_10_2 = {}));
 //# sourceMappingURL=Vector.js.map

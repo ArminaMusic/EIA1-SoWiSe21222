@@ -1,11 +1,11 @@
 /*
-Aufgabe: L09.2_GoldenerHerbstClasses
+Aufgabe: L10.2_GoldenerHerbstPolymorphie
 Name: Armina Music
 Matrikel: 268021
-Datum: 13.12.2021
-Kommentar: es6 Version
+Datum: 08.01.2022
+Kommentar: es2017 Version
 */
-namespace Golden {
+namespace Golden_10_2 {
     export class Vector {
         x: number;
         y: number;
@@ -42,4 +42,4 @@ namespace Golden {
         }
     }
     
-    }
+}
